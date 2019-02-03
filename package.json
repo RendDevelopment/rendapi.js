@@ -19,9 +19,9 @@
   "author": "Allvaa",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/AlvvxL/rendapi.js/issues"
+    "url": "https://github.com/RendDevelopment/rendapi.js/issues"
   },
-  "homepage": "https://github.com/AlvvxL/rendapi.js#readme",
+  "homepage": "https://github.com/RendDevelopment/rendapi.js#readme",
   "dependencies": {
     "node-superfetch": "^0.1.9"
   }
