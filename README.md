@@ -3,6 +3,8 @@
 An API Wrapper For [RendDevelopment](https://rend-dev.glitch.me)
 (still under development)
 
+[Link to discord server](https://discord.gg/c5dMfsF)
+
 >Example With Async/Await
 ```js
 const Discord = require('discord.js');
