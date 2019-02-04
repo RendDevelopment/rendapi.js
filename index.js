@@ -9,8 +9,8 @@ module.exports = class RendDev {
         if (!botID) throw new Error("No bot ID was provided. Need Help? discord.gg/c5dMfsF")
         if (!ownerID) throw new Error("No owner ID was provided. Need Help? discord.gg/c5dMfsF")
         if (isNaN(botID)) throw new Error("Invalid Bot ID.")
-        if (botID.length > 18) throw new Error("Invalid Bot Id.")
-        if (ownerID.length > 18) throw new Error("Invalid Owner Id.")
+        //if (botID.length > 18) throw new Error("Invalid Bot Id.")
+       // if (ownerID.length > 18) throw new Error("Invalid Owner Id.")
         if (isNaN(ownerID)) throw new Error("Invalid Owner ID.")
         console.log(`You logged as ${owner.tag} with bot ${botOwn.tag}`)
         /*
