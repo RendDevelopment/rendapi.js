@@ -4,12 +4,15 @@ module.exports = class RendDev {
     constructor(botID, ownerID) {
         this.baseURL = "https://rend-dev.glitch.me";
         this.baseAPIURL = this.baseURL + "/api";
+        var owner = await fetchUser(ownerID)
+        var botOwn = await fetchUser(botID)
         if (!botID) throw new Error("No bot ID was provided. Need Help? discord.gg/c5dMfsF")
         if (!ownerID) throw new Error("No owner ID was provided. Need Help? discord.gg/c5dMfsF")
         if (isNaN(botID)) throw new Error("Invalid Bot ID.")
         if (botID.length > 18) throw new Error("Invalid Bot Id.")
         if (ownerID.length > 18) throw new Error("Invalid Owner Id.")
         if (isNaN(ownerID)) throw new Error("Invalid Owner ID.")
+        console.debug(`You logged as ${owner.tag} with bot ${botOwn.tag}`)
         /*
         fetch.get(this.baseAPIURL + `/bots/${botID}`).then(rend => {
             if (ownerID !== rend.body.ownerID) throw new Error("Wrong Owner ID.")
