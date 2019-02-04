@@ -12,7 +12,7 @@ module.exports = class RendDev {
         if (botID.length > 18) throw new Error("Invalid Bot Id.")
         if (ownerID.length > 18) throw new Error("Invalid Owner Id.")
         if (isNaN(ownerID)) throw new Error("Invalid Owner ID.")
-        console.debug(`You logged as ${owner.tag} with bot ${botOwn.tag}`)
+        console.log(`You logged as ${owner.tag} with bot ${botOwn.tag}`)
         /*
         fetch.get(this.baseAPIURL + `/bots/${botID}`).then(rend => {
             if (ownerID !== rend.body.ownerID) throw new Error("Wrong Owner ID.")
