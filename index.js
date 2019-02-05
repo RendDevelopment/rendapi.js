@@ -4,7 +4,7 @@ module.exports = class RendDev {
     constructor(botID, ownerID) {
         this.baseURL = "https://rend-dev.glitch.me";
         this.baseAPIURL = this.baseURL + "/api";
-        var owner = fetchUser(ownerID).then(async owner => {
+        fetchUser(ownerID).then(async owner => {
         var botOwn = await fetchUser(botID)
         if (!botID) throw new Error("No bot ID was provided. Need Help? discord.gg/c5dMfsF")
         if (!ownerID) throw new Error("No owner ID was provided. Need Help? discord.gg/c5dMfsF")
