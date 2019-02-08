@@ -18,7 +18,7 @@ module.exports = class RendDev {
         this.baseAPIURL = this.baseURL + "/api";
         
         this.getBots = async (limit) => {
-            let bots = await fetch.get(this.baseAPIURL + "/botsArray")
+            let {body: bots} = await fetch.get(this.baseAPIURL + "/botsArray")
             if (limit) {
                 if (limit > bots.length) throw Error("limit more than bot data was registered")
                 return bots.splice(0, limit - 1)
