@@ -10,7 +10,7 @@ module.exports = class RendDev {
         if (isNaN(ownerID)) throw new Error("Invalid Owner ID.");
         // if (botID.length > 18) throw new Error("Invalid Bot Id.");
         // if (ownerID.length > 18) throw new Error("Invalid Owner Id.");
-        console.log(`You logged as ${fetchUser(ownerID).then(owner => owner).tag} with bot ${fetchUser(botID).then(botOwn => botOwn).tag}`);
+        console.log(`You logged as ${fetchUser(ownerID).then(owner => owner.tag)} with bot ${fetchUser(botID).then(botOwn => botOwn.tag)}`);
         /*
         fetch.get(this.baseAPIURL + `/bots/${botID}`).then(rend => {
             if (ownerID !== rend.body.ownerID) throw new Error("Wrong Owner ID.");
