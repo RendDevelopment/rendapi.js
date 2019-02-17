@@ -22,11 +22,11 @@ module.exports = class RendDev {
         this.getBots = async (data = {}) => {
             let {body: bots} = await request.get(this.baseAPIURL + "/botsArray");
             if (data.ownerID && data.limit) {
-                let botslimit = bots.filter(bot.ownerID === data.ownerID);
+                let botsfilter = bots.filter(bot => bot.ownerID === data.ownerID);
                 if (data.limit > botslimit.length) throw Error("limit more than bot data was registered");
-                return botslimit.splice(0, data.limit);
+                return botsfilter.splice(0, data.limit);
             } else if (data.ownerID) {
-                return bots.filter(bot.ownerID === data.ownerID);
+                return bots.filter(bot => bot.ownerID === data.ownerID);
             } else if (data.limit) {
                 if (data.limit > bots.length) throw Error("limit more than bot data was registered");
                 return bots.splice(0, data.limit);
