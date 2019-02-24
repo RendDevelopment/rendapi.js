@@ -10,7 +10,11 @@ module.exports = class RendDev {
         if (isNaN(ownerID)) throw new Error("Invalid Owner ID.");
         // if (botID.length > 18) throw new Error("Invalid Bot Id.");
         // if (ownerID.length > 18) throw new Error("Invalid Owner Id.");
-        console.log(`You logged as ${fetchUser(ownerID).then(owner => owner.tag)} with bot ${fetchUser(botID).then(botOwn => botOwn.tag)}`);
+        fetchUser(ownerID).then(owner => {
+        fetchUser(botID).then(botOwn => {
+        console.log(`You logged as ${owner.tag} with bot ${botOwn.tag}`);
+        })
+        })
         /*
         fetch.get(this.baseAPIURL + `/bots/${botID}`).then(rend => {
             if (ownerID !== rend.body.ownerID) throw new Error("Wrong Owner ID.");
@@ -23,7 +27,7 @@ module.exports = class RendDev {
             let {body: bots} = await request.get(this.baseAPIURL + "/botsArray");
             if (data.ownerID && data.limit) {
                 let botsfilter = bots.filter(bot => bot.ownerID === data.ownerID);
-                if (data.limit > botslimit.length) throw Error("limit more than bot data was registered");
+                if (data.limit > botsfilter.length) throw Error("limit more than bot data was registered");
                 return botsfilter.splice(0, data.limit);
             } else if (data.ownerID) {
                 return bots.filter(bot => bot.ownerID === data.ownerID);
@@ -78,7 +82,7 @@ module.exports = class RendDev {
     };
 };
 
-async function fetchUser(userID) {
+const fetchUser = async (userID) => {
     const { body } = await request.get(`https://rend-dev.glitch.me/api/fetchUser?id=${userID}`);
     if (body.error === "invalid_id") throw new Error("Invalid User ID");
     return body;
