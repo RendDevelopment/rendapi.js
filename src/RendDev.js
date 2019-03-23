@@ -42,6 +42,7 @@ module.exports = class RendDev {
         this.getBot = async (id) => {
             if (!id) throw Error("No bot ID was provided");
             const { body: botuser } = await request.get(this.baseAPIURL + `/bots/${id}`);
+            if (botuser.error === "not_found") throw Error("Unregistered Bot.")
             const owner = await fetchUser(botuser.ownerID);
             const bot = await fetchUser(botuser.botID);
             const body = {
