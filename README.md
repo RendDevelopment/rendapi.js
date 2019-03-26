@@ -21,7 +21,7 @@ client.on('message', async msg => {
   if (msg.author.bot) return;
   if (!msg.content.startsWith(PREFIX));
   let args = message.content.slice(PREFIX.length).trim().split(" ");
-  let command args.shift().toLowerCase();
+  let command = args.shift().toLowerCase();
   if (command === "rend") {
     if (!args[0]) return msg.channel.send("Please Provide a Bot ID");
     let result = await rend.getBot(args[0]);
