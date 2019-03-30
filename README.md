@@ -1,9 +1,6 @@
 # rendapi.js
 
 An API Wrapper For [RendDevelopment](https://rend-dev.glitch.me)
-(still under development)
-
-[Link to discord server](https://discord.gg/c5dMfsF)
 
 >Example With Async/Await
 ```js
@@ -33,3 +30,5 @@ client.on('message', async msg => {
 
 client.login('token');
 ```
+
+[Link to Discord Server](https://discord.gg/c5dMfsF)
