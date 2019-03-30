@@ -9,8 +9,8 @@ module.exports = class RendDev {
         if (typeof ownerID !== "string") throw new Error("Owner ID must be a string")
         if (isNaN(botID)) throw new Error("Invalid Bot ID.");
         if (isNaN(ownerID)) throw new Error("Invalid Owner ID.");
-        if (botID.length < 17) throw new Error("Invalid Bot Id.");
-        if (ownerID.length < 17) throw new Error("Invalid Owner Id.");
+        if (botID.length <= 17) throw new Error("Invalid Bot Id.");
+        if (ownerID.length <= 17) throw new Error("Invalid Owner Id.");
         
         request.get(`https://rend-dev.glitch.me/api/bots/${botID}`).then(rend => {
             if (ownerID !== rend.body.ownerID) throw new Error("Wrong Owner ID.")
@@ -23,6 +23,7 @@ module.exports = class RendDev {
             }
         })
         
+        this.version = require("../package.json").version;
         this.baseURL = "https://rend-dev.glitch.me";
         this.baseAPIURL = this.baseURL + "/api";
         
