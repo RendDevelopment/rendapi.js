@@ -1,6 +1,6 @@
 {
   "name": "rendapi.js",
-  "version": "0.3.0",
+  "version": "0.3.2",
   "description": "API Wrapper For RendDevelopment",
   "main": "index.js",
   "scripts": {

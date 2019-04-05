@@ -19,24 +19,65 @@ module.exports = async (userID) => {
                 bot: body.bot,
                 createdTimestamp: body.createdTimestamp,
                 createdAt: new Date(body.createdTimestamp).toString(),
-                owner: fetchedOwnerID
+                owner: fetchedOwnerID,
+                prefix: bot.prefix ? bot.prefix : null,
+                accepted: bot.accepted ? bot.accepted : null
             };
             return user;
         } else {
-            let user = {
-                id: body.id,
-                username: body.username,
-                discriminator: body.discriminator,
-                tag: body.tag,
-                avatar: body.avatar,
-                avatarURL: body.avatarURL,
-                displayAvatarURL: body.displayAvatarURL,
-                bot: body.bot,
-                createdTimestamp: body.createdTimestamp,
-                createdAt: new Date(body.createdTimestamp).toString(),
-                bots: body.bots
+            if (body.bots.length === 0) {
+                let user = {
+                    id: body.id,
+                    username: body.username,
+                    discriminator: body.discriminator,
+                    tag: body.tag,
+                    avatar: body.avatar,
+                    avatarURL: body.avatarURL,
+                    displayAvatarURL: body.displayAvatarURL,
+                    bot: body.bot,
+                    createdTimestamp: body.createdTimestamp,
+                    createdAt: new Date(body.createdTimestamp).toString(),
+                    bots: []
+                };
+                return user;
+            } else {
+                const bots = []
+                for (const raw of body.bots) {
+                    const { body: fetchBot } = await request.get(`https://rend-dev.glitch.me/api/fetchUser?id=${raw.botID}`);
+                    const { body: fetchOwner } = await request.get(`https://rend-dev.glitch.me/api/fetchUser?id=${raw.ownerID}`);
+                    const { body: dataBot } = await request.get(`https://rend-dev.glitch.me/api/bots/${raw.botID}`);
+                    let fetched = {
+                        id: fetchBot.id,
+                        username: fetchBot.username,
+                        discriminator: fetchBot.discriminator,
+                        tag: fetchBot.tag,
+                        avatar: fetchBot.avatar,
+                        avatarURL: fetchBot.avatarURL,
+                        displayAvatarURL: fetchBot.displayAvatarURL,
+                        bot: fetchBot.bot,
+                        createdTimestamp: fetchBot.createdTimestamp,
+                        createdAt: new Date(fetchBot.createdTimestamp).toString(),
+                        owner: fetchOwner,
+                        prefix: dataBot.prefix ? dataBot.prefix : null,
+                        accepted: dataBot.accepted ? dataBot.accepted : null
+                    };
+                    bots.push(fetched);
+                };
+                let user = {
+                    id: body.id,
+                    username: body.username,
+                    discriminator: body.discriminator,
+                    tag: body.tag,
+                    avatar: body.avatar,
+                    avatarURL: body.avatarURL,
+                    displayAvatarURL: body.displayAvatarURL,
+                    bot: body.bot,
+                    createdTimestamp: body.createdTimestamp,
+                    createdAt: new Date(body.createdTimestamp).toString(),
+                    bots: bots
+                };
+                return user;
             };
-            return user;
         };
     };
 };
